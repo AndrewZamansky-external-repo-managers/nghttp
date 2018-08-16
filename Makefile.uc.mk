@@ -36,38 +36,36 @@ INCLUDE_DIR += $(CURR_NGHTTP2_COMPONENT_DIR)/includes/nghttp2
 INCLUDE_DIR += $(NGHTTP2_PATH)/lib/includes
 INCLUDE_DIR += $(AUTO_GENERATED_FILES_DIR)
 
-#DEFINES += DEBUGBUILD
-SRC += lib/nghttp2_debug.c
 
-#ASMFLAGS =
+#ASMFLAGS +=
 
 
 ifeq ($(CONFIG_HOST),y)
-    DEFINES += COMPILING_FOR_HOST
     ifeq ($(findstring WINDOWS,$(COMPILER_HOST_OS)),WINDOWS)
         ifdef CONFIG_MICROSOFT_COMPILER
             #disable warning C4127: conditional expression is constant
             CFLAGS += /wd4127
-            
-            #disable warning C4204: nonstandard 
+
+            #disable warning C4204: nonstandard
             #  extension used : non-constant aggregate initializer
             CFLAGS += /wd4204
-            
+
             #disable warning C4214: nonstandard
             #  extension used : bit field types other than int
             CFLAGS += /wd4214
-            
+
             DEFINES += _CRT_SECURE_NO_WARNINGS
         endif
-        DEFINES += COMPILING_FOR_WINDOWS_HOST
-    else
-        DEFINES += COMPILING_FOR_LINUX_HOST
     endif
 endif
 
-#INCLUDE_DIR =
 
 DEFINES += HAVE_CONFIG_H
+
+ifeq ($(strip $(CONFIG_NGHTTP2_ENABLE_DEBUG)),y)
+    DEFINES += DEBUGBUILD
+    SRC += lib/nghttp2_debug.c
+endif
 
 SRC += lib/nghttp2_session.c
 SRC += lib/nghttp2_callbacks.c
@@ -87,8 +85,6 @@ SRC += lib/nghttp2_http.c
 SRC += lib/nghttp2_rcbuf.c
 SRC += lib/nghttp2_hd_huffman.c
 SRC += lib/nghttp2_hd_huffman_data.c
-
-#SRC += nghttp2_debug.c
 
 VPATH += | $(NGHTTP2_PATH)
 

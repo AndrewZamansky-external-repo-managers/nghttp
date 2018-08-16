@@ -1,4 +1,9 @@
 #
+
 config NGHTTP2_GIT_MANAGER_COMMIT_HASH
 	string "nghttp2 git commit hash"
 	default ""
+
+config  NGHTTP2_ENABLE_DEBUG
+	bool   "nghttp2 enable debug"
+	default n
