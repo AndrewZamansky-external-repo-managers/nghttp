@@ -3,6 +3,13 @@ INCLUDE_THIS_COMPONENT := $(CONFIG_INCLUDE_NGHTTP2)
 
 ifdef CONFIG_INCLUDE_NGHTTP2
 
+    #test if current commit and branch of nghttp2 git is the same as required by application
+    CURR_GIT_REPO_DIR :=$(NGHTTP2_PATH)
+    CURR_GIT_COMMIT_HASH_VARIABLE :=CONFIG_NGHTTP2_GIT_MANAGER_COMMIT_HASH
+    include $(MAKEFILES_ROOT_DIR)/_include_functions/git_prebuild_repo_check.mk
+
+    NGHTTP2_GIT_COMMIT_HASH :="e6381b2b65dd0bcea558e6f41958850c0acaa30a"
+
     NGHTTP2_PATH :=$(EXTERNAL_SOURCE_ROOT_DIR)/nghttp2
     ifeq ("$(wildcard $(NGHTTP2_PATH))","")
         $(info   )
@@ -14,7 +21,7 @@ ifdef CONFIG_INCLUDE_NGHTTP2
 
     #test if current commit and branch of nghttp2 git is the same as required by application
     CURR_GIT_REPO_DIR :=$(NGHTTP2_PATH)
-    CURR_GIT_COMMIT_HASH_VARIABLE :=CONFIG_NGHTTP2_GIT_COMMIT_HASH
+    CURR_GIT_COMMIT_HASH_VARIABLE :=NGHTTP2_GIT_COMMIT_HASH
     include $(MAKEFILES_ROOT_DIR)/_include_functions/git_prebuild_repo_check.mk
 
 endif
