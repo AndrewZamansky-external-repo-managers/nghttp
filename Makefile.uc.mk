@@ -1,10 +1,14 @@
 
 INCLUDE_THIS_COMPONENT := $(CONFIG_INCLUDE_NGHTTP2)
 
+EXPANDED_MAKEFILE_LIST := $(realpath $(MAKEFILE_LIST))
+NGHTTP2_MAKEFILE :=$(filter %nghttp2_git/Makefile.uc.mk, $(EXPANDED_MAKEFILE_LIST))
+CURR_NGHTTP2_COMPONENT_DIR := $(patsubst %/Makefile.uc.mk,%,$(NGHTTP2_MAKEFILE))
+
 ifdef CONFIG_INCLUDE_NGHTTP2
 
     #test if current commit and branch of nghttp2 git is the same as required by application
-    CURR_GIT_REPO_DIR :=$(NGHTTP2_PATH)
+    CURR_GIT_REPO_DIR :=$(CURR_NGHTTP2_COMPONENT_DIR)
     CURR_GIT_COMMIT_HASH_VARIABLE :=CONFIG_NGHTTP2_GIT_MANAGER_COMMIT_HASH
     include $(MAKEFILES_ROOT_DIR)/_include_functions/git_prebuild_repo_check.mk
 
@@ -26,9 +30,6 @@ ifdef CONFIG_INCLUDE_NGHTTP2
 
 endif
 
-EXPANDED_MAKEFILE_LIST := $(realpath $(MAKEFILE_LIST))
-NGHTTP2_MAKEFILE :=$(filter %nghttp2/Makefile.uc.mk, $(EXPANDED_MAKEFILE_LIST))
-CURR_NGHTTP2_COMPONENT_DIR := $(patsubst %/Makefile.uc.mk,%,$(NGHTTP2_MAKEFILE))
 
 INCLUDE_DIR += $(CURR_NGHTTP2_COMPONENT_DIR)/includes
 INCLUDE_DIR += $(CURR_NGHTTP2_COMPONENT_DIR)/includes/nghttp2
