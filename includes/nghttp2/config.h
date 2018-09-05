@@ -25,6 +25,7 @@
 #ifndef NGHTTP2_CONFIG_H
 #define NGHTTP2_CONFIG_H
 
+#include "project_config.h"
 #include "sys/socket.h"
 
 #if !defined(CONFIG_CURL_CUSTOM_SOCKET_LAYER)
