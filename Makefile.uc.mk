@@ -29,7 +29,7 @@ ifdef CONFIG_INCLUDE_NGHTTP2
     CURR_GIT_COMMIT_HASH_VARIABLE :=NGHTTP2_GIT_COMMIT_HASH
     include $(MAKEFILES_ROOT_DIR)/_include_functions/git_prebuild_repo_check.mk
 
-    ifeq ($(strip $(CONFIG_CURL_CUSTOM_SOCKET_LAYER)),y)
+    ifeq ($(strip $(CONFIG_CUSTOM_SOCKET_LAYER)),y)
         DEFINES += USE_CUSTOM_SOCKET_IN_COMPILED_MODULE
     endif
 
