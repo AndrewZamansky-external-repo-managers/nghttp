@@ -20,8 +20,9 @@ ifeq ($(strip $(CONFIG_CUSTOM_SOCKET_LAYER)),y)
     DEFINES += USE_CUSTOM_SOCKET_IN_COMPILED_MODULE
 endif
 
-INCLUDE_DIR += $(CURR_COMPONENT_DIR)/includes
-INCLUDE_DIR += $(CURR_COMPONENT_DIR)/includes/nghttp2
+# CURR_COMPONENT_DIR is pointing to parent directory
+INCLUDE_DIR += $(CURR_COMPONENT_DIR)/nghttp2_git/includes
+INCLUDE_DIR += $(CURR_COMPONENT_DIR)/nghttp2_git/includes/nghttp2
 INCLUDE_DIR += $(NGHTTP2_PATH)/lib/includes
 INCLUDE_DIR += $(AUTO_GENERATED_FILES_DIR)
 
