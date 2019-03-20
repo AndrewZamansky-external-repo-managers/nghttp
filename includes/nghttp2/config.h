@@ -28,7 +28,7 @@
 #include "project_config.h"
 #include "sys/socket.h"
 
-#if !defined(CONFIG_CUSTOM_SOCKET_LAYER)
+#if !defined(CONFIG_USE_INTERNAL_SOCKETS_IMPLEMENTATION)
 	#include <netinet/in.h>
 #endif
 
