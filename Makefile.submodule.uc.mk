@@ -52,6 +52,10 @@ ifeq ($(CONFIG_HOST),y)
 endif
 
 
+# following macro was added from some gcc version (at least from 9.2)
+# defining it will open typdefs like ulong
+DEFINES += _GNU_SOURCE
+
 DEFINES += HAVE_CONFIG_H
 
 ifeq ($(strip $(CONFIG_NGHTTP2_ENABLE_DEBUG)),y)
