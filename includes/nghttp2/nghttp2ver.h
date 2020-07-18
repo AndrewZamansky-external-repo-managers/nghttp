@@ -36,7 +36,9 @@
 #    define ssize_t __int64
 #  else
 #    define _SSIZE_T_DEFINED
-#    define ssize_t int
+#    if !defined(__ssize_t_defined) // for GCC
+#        define ssize_t int
+#    endif
 #  endif
 #endif
 #define NGHTTP2_STATICLIB

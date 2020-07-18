@@ -18,10 +18,6 @@ include $(MAKEFILES_ROOT_DIR)/_include_functions/git_prebuild_repo_check.mk
 
 NGHTTP2_GIT_MANAGER_PATH :=$(CURR_COMPONENT_DIR)/nghttp2_git
 
-ifeq ($(strip $(CONFIG_USE_INTERNAL_SOCKETS_IMPLEMENTATION)),y)
-    DEFINES += USE_CUSTOM_SOCKET_IN_COMPILED_MODULE
-endif
-
 # CURR_COMPONENT_DIR is pointing to parent directory
 INCLUDE_DIR += $(CURR_COMPONENT_DIR)/nghttp2_git/includes
 INCLUDE_DIR += $(CURR_COMPONENT_DIR)/nghttp2_git/includes/nghttp2
